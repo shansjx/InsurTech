@@ -9,6 +9,11 @@ const port = 3000;
 //bodyparser
 app.use(bodyParser.urlencoded({extended:true}));
 
+//get public
+app.use("/img", express.static((__dirname + "/public/img")));
+app.use("/css", express.static((__dirname + "/public/css")));
+
+
 //sets hbs config
 app.engine('handlebars', exphbs.engine({
     layoutsDir: __dirname + '/views/layouts',

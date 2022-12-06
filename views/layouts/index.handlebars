@@ -6,15 +6,31 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    {{!-- Lightbox --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css"
+        integrity="sha256-HAaDW5o2+LelybUhfuk0Zh2Vdk8Y2W2UeKmbaXhalfA=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"
+        integrity="sha256-Y1rRlwTzT5K5hhCBfAFWABD4cU13QGuRN6P5apfWzVs=" crossorigin="anonymous"></script>
 
-    {{!-- <link rel="shortcut icon" type="image/x-icon" href="http://www.google.com/s2/favicons?domain=www.google.de" /> --}}
 
-    {{!-- <link rel="shortcut icon" href="#"> --}}
+    <link rel="shortcut icon" type="image/x-icon" href="img/faviconlogo.png" />
 
+  
 </head>
+
 <body>
-    {{{body}}}
+    {{> _navbar }}
+
+    <div class="container">
+
+        {{{body}}}
+    </div>
+
+
 </body>
 
 </html>
