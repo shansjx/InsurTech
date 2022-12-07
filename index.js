@@ -3,6 +3,10 @@ const express = require("express");
 const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 
+/* for flash messaging */
+const flash = require('connect-flash');
+const FlashMessenger = require('flash-messenger');   
+
 const app = express();
 const port = 3000;
 
@@ -15,7 +19,7 @@ app.use("/css", express.static((__dirname + "/public/css")));
 
 
 //sets hbs config
-app.engine('handlebars', exphbs.engine({
+app.engine('handlebars', exphbs({
     layoutsDir: __dirname + '/views/layouts',
     partialsDir: __dirname + '/views/partials/'
 }));
