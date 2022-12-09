@@ -1,7 +1,11 @@
 
-const express = require("express");
-const exphbs = require("express-handlebars");
-const bodyParser = require("body-parser");
+const express = require('express');
+const session = require('express-session');
+const path = require('path');
+const exphbs = require('express-handlebars');
+const methodOverride = require('method-override');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 /* for flash messaging */
 const flash = require('connect-flash');
@@ -13,10 +17,8 @@ const port = 3000;
 //bodyparser
 app.use(bodyParser.urlencoded({extended:true}));
 
-//get public
-app.use("/img", express.static((__dirname + "/public/img")));
-app.use("/css", express.static((__dirname + "/public/css")));
-
+// Creates static folder for publicly accessible HTML, CSS and Javascript files
+app.use(express.static(path.join(__dirname, 'public')));
 
 //sets hbs config
 app.engine('handlebars', exphbs({
