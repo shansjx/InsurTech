@@ -3,8 +3,7 @@ const router = express.Router();
 const alertMessage = require('../helpers/messenger');
 
 router.get('/', (req, res) => {
-	const title = 'Pulse Application';
-	res.render('main', {title: title}) // renders views/main.handlebars
+	res.render('main') // renders main.handlebars
 });
 
 // Logout User
