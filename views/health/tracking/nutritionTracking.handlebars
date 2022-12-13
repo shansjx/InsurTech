@@ -1,103 +1,185 @@
+{{!-- viewing of nutritiontable --}}
 <div class="container">
     <div class="card card-body">
         <div class="container">
             <h3 class="text-danger text-center">Nutrition Tracking</h3>
 
-            <div>
-                <h5 style="display: inline-block;">Today</h5>
-                <div class="dropdown float-right">
-                    <button type="button" class="btn btn-light mb-4 " data-toggle="dropdown">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" fill="currentColor" class="bi bi-three-dots"
-                            viewBox="0 0 16 16">
-                            <path
-                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
-                            </path>
-                        </svg>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/health/tracking/nutrition/addMeal">
-                            {{!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray"
-                                class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z">
-                                </path>
-                            </svg> --}}
-                            Add Meal</a>
 
-                        <a class="dropdown-item" href="#">Edit Meal</a>
-                        <a class="dropdown-item" href="#">Delete Meal</a>
-                    </div>
+            {{#if nutritionT}}
+            {{!-- {{#each nutritionT}}
+            <h5>Today: {{date}}</h5>
+            {{/each}} --}}
+
+            <h5>Today</h5>
+
+            <div class="dropdown float-right">
+                <button type="button" class="btn btn-light mb-4 " data-toggle="dropdown">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" fill="currentColor" class="bi bi-three-dots"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
+                        </path>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/health/tracking/nutrition/addMeal">
+                        Add Meal</a>
+                    <a class="dropdown-item" href="/health/tracking/nutrition/showEditMeals">Edit Meals</a>
                 </div>
             </div>
             <br>
-            {{!-- <p class="float-right">766/1400cal goal</p> --}}
-            {{!-- to add in after goals pg n db --}}
             <table class="table">
                 <thead class="table-danger">
                     <tr>
                         <th scope="col">Nutrition</th>
-                        <th scope="col">Breakfast</th>
-                        <th scope="col">Lunch</th>
-                        <th scope="col">Dinner</th>
-                        <th scope="col">Snack</th>
-                        <th scope="col">Others</th>
+                        {{#each nutritionT}}
+                        <th scope="col">{{meal}}</th>
+
+                        {{/each}}
 
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">Food</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-
-                        <td>@mdo</td>
+                        {{#each nutritionT}}
+                        <td>{{food}}</td>
+                        {{/each}}
 
                     </tr>
                     <tr>
                         <th scope="row">Calories (cal)</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
+                        {{#each nutritionT}}
+                        {{#if calories}}
+                        <td>{{calories}}</td>
+                        {{else}}
+                        <td>-</td>
+                        {{/if}}
+                        {{/each}}
 
-                        <td>@mdo</td>
+
 
                     </tr>
                     <tr>
                         <th scope="row">Carbs (%)</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-
-                        <td>@mdo</td>
+                        {{#each nutritionT}}
+                        {{#if carbs}}
+                        <td>{{carbs}}</td>
+                        {{else}}
+                        <td>-</td>
+                        {{/if}}
+                        {{/each}}
 
                     </tr>
                     <tr>
                         <th scope="row">Fat (%)</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-
-                        <td>@mdo</td>
+                        {{#each nutritionT}}
+                        {{#if fat}}
+                        <td>{{fat}}</td>
+                        {{else}}
+                        <td>-</td>
+                        {{/if}}
+                        {{/each}}
 
                     </tr>
                     <tr>
                         <th scope="row">Protein (%)</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
+                        {{#each nutritionT}}
+                        {{#if protein}}
+                        <td>{{protein}}</td>
+                        {{else}}
+                        <td>-</td>
+                        {{/if}}
 
-                        <td>@mdo</td>
+
+                        {{/each}}
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+            {{else}}
+            <h5>Today</h5>
+
+            <h4>No meals added yet</h4>
+            <div class="dropdown float-right">
+                <button type="button" class="btn btn-light mb-4 " data-toggle="dropdown">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" fill="currentColor" class="bi bi-three-dots"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z">
+                        </path>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/health/tracking/nutrition/addMeal">Add Meal</a>
+                </div>
+            </div>
+            <table class="table">
+                <thead class="table-danger">
+                    <tr>
+                        <th scope="col">Nutrition</th>
+                        <th scope="col">-</th>
+                        <th scope="col">-</th>
+                        <th scope="col">-</th>
+                        <th scope="col">-</th>
+                        <th scope="col">-</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Food</th>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Calories (cal)</th>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Carbs (%)</th>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+
+                        <td>-</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Fat (%)</th>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+
+                    </tr>
+                    <tr>
+                        <th scope="row">Protein (%)</th>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
 
                     </tr>
                 </tbody>
             </table>
-
+            {{/if}}
         </div>
 
     </div>
