@@ -11,8 +11,14 @@
                     <div class="row">
                         <div class="col">
                             <label for="meal">Meal</label>
-                            <input type="text" class="form-control" name="meal" required>
-                        
+                            {{!-- <input type="text" class="form-control" name="meal" required> --}}
+                            <select class="form-control" name="meal">
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Snack">Snack</option>
+                                <option value="Others">Others</option>
+                            </select>
                         </div>
 
                         <div class="col">
