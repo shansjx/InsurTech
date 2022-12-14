@@ -3,6 +3,7 @@
         <div class="container">
             <h3 class="text-danger text-center">Budget Tracking</h3>
 
+            {{#if budgetT}}
             <div>
                 <h5 style="display: inline-block;">Today</h5>
                 <div class="dropdown float-right">
@@ -24,7 +25,7 @@
                             </svg>
                             Add Budget</a>
 
-                        <a class="dropdown-item" href="#">Edit Budget</a>
+                        <a class="dropdown-item" href="/wealth/tracking/budget/showEditBudgets">Edit Budget</a>
                         <a class="dropdown-item" href="#">Delete Budget</a>
                     </div>
                 </div>
@@ -34,26 +35,21 @@
             <table class="table" border="1px solid black">
                 <thead class="table-danger">
                     <tr>
-                        <th scope="row">Budget Name/th>
+                        <th scope="row">Budget Name</th>
                         <th scope="row">Amount</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {{#each budgetT}}
                     <tr>
-                        <th scope="col">Food</th>
-                        <td>$100</td>
+                        <th scope="col">{{budget}}</th>
+                        <td>${{amount}}</td>
                     </tr>
-                    <tr>
-                        <th scope="col">Grocery</th>
-                        <td>$300</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Personal</th>
-                        <td>$250</td>
-                    </tr>
+                    {{/each}}
                 </tbody>
             </table>
-
+            {{else}}
+            {{/if}}
         </div>
     </div>
 </div>
