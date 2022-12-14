@@ -6,6 +6,8 @@ const alertMessage = require('../helpers/messenger'); // Bring in alert messenge
 //gets model/NutritionT
 const NutritionT = require('../models/NutritionT');
 
+//gets model/HeightT
+const HeightT = require('../models/heightT');
 
 // always reference to /health in your view links before you get('/insertroutehere')
 
@@ -156,5 +158,119 @@ router.get('/tracking/ntDeleteMeal/:id', (req, res) => {
 
 //-------------------------------------------------------//
 // 
+
+//healthAssistant page routes to healthReport page
+router.get('/report/', (req, res) => {
+    HeightT.findAll({
+        where: {
+        },
+        order: [
+        ],
+        raw: true
+    })
+        .then((heightT) => {
+            res.render('health/report/healthRecord', {
+                heightT: heightT
+            });
+        })
+        .catch(err => console.log(err));
+});
+//-------------------------------------------------------//
+//report -> healthRecord
+router.get('/report/addHeight', (req, res) => {
+    res.render('health/report/hrAddHeight');
+});
+router.post('/report/hrAddHeight', (req, res) => {
+    let userid = 1;
+    let height = req.body.height;
+    let date = req.body.date;
+    let time = req.body.time;
+
+    HeightT.create({
+        userid,
+        height,
+        date,
+        time
+    }).then((height) => {
+        //redirects to the URL derived from the specified path
+        res.redirect('/health/report/');
+    })
+        .catch(err => console.log(err))
+});
+
+router.get('/report/hrEditHeight/:id', (req, res) => {
+    HeightT.findOne({
+        where: {
+            id: req.params.id
+        },
+        order: [
+        ],
+        raw: true
+    })
+        .then((heightT) => {
+            res.render('health/report/hrEditHeight', {
+                heightT: heightT
+            });
+        })
+        .catch(err => console.log(err));
+});
+
+router.put('/report/editedHeight/:id', (req, res) => {
+    let userid = 1;
+    let height = req.body.height;
+    let date = req.body.date;
+    let time = req.body.time;
+
+    HeightT.update({
+        userid,
+        height,
+        date,
+        time
+    }, {
+        where: {
+            id: req.params.id
+        }
+    }).then((heightT) => {
+        res.redirect('/health/report/');
+    }).catch(err => console.log(err))
+});
+
+router.get('/report/deleteHeight', (req, res) => {
+    HeightT.findAll({
+        where: {
+        },
+        order: [
+        ],
+        raw: true
+    })
+        .then((heightT) => {
+            res.render('health/report/hrDeleteHeight', {
+                heightT: heightT
+            });
+        })
+        .catch(err => console.log(err));
+});
+
+router.get('/report/hrDeleteHeight/:id', (req, res) => {
+    HeightT.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then((heightT) => {
+        HeightT.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(() => { 
+            res.redirect('/health/report');
+        })
+    }).catch(err => console.log(err)); 
+});
+
+//-------------------------------------------------------//
+
+
+
+
 
 module.exports = router;
