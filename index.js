@@ -1,4 +1,3 @@
-
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
@@ -41,7 +40,6 @@ app.engine('handlebars', exphbs({
         allowProtoMethodsByDefault: true,
     },
 	defaultLayout: 'index' // Specify default template views/layout/main.handlebar 
-
 }));
 app.set('view engine', 'handlebars');
 
@@ -55,9 +53,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Method override middleware to use other HTTP methods such as PUT and DELETE
 app.use(methodOverride('_method'));
 
+//------include app.use session here before flash n middleware ---------
+
+
 /* for flash messaging */
 app.use(flash());
-//having error with flashmessenger.middleware
 // app.use(FlashMessenger.middleware);
 
 // app.use(function (req, res, next) {

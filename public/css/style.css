@@ -20,3 +20,14 @@
   text-align: center;
 }
 
+/* Health Report*/
+.add-record-img{
+  width: 30px;
+  margin: 5px;
+}
+
+.delete-record-img{
+  width: 30px;
+  margin: 5px;
+}
+
