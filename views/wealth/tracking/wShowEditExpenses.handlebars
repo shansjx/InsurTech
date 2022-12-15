@@ -2,10 +2,10 @@
 <div class="container">
     <div class="card card-body">
         <div class="container">
-            <h3 class="text-danger text-center">Budget Tracking - Edit Budget</h3>
+            <h3 class="text-danger text-center">Expense Tracking - Edit Budget</h3>
 
 
-            {{#if budgetT}}
+            {{#if expensesT}}
             {{!-- {{#each nutritionT}}
             <h5>Today: {{date}}</h5>
             {{/each}} --}}
@@ -22,28 +22,28 @@
                     </svg>
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/wealth/tracking/budget/addBudget">Add Budget</a>
-                    <a class="dropdown-item" href="/wealth/tracking/budget">&lt;View Budget</a>
+                    <a class="dropdown-item" href="/wealth/tracking/expense/addExpense">Add Budget</a>
+                    <a class="dropdown-item" href="/wealth/tracking/expense">&lt;View Expenses</a>
                 </div>
             </div>
             <br>
             <table class="table" border="1px solid black">
                 <thead class="table-danger">
                     <tr>
-                        <th scope="row">Budget Name</th>
+                        <th scope="row">Expense</th>
                         <th scope="row">Amount</th>
                         <th scope="row" style="width: 20px; height:40px">Edit/Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each budgetT}}
+                    {{#each expensesT}}
                     <tr>
-                        <th scope="col">{{budget}}</th>
+                        <th scope="col">{{expense}}</th>
                         <td>${{amount}}</td>
                         <td>
-                            <a href="/wealth/tracking/wEditBudget/{{id}}">
+                            <a href="/wealth/tracking/wEditExpense/{{id}}">
                             <i class="fa-solid fa-pen" style="color: gray;"></i>
-                            <a href="/wealth/tracking/wDeleteBudget/{{id}}" data-toggle="confirmation"
+                            <a href="/wealth/tracking/wDeleteExpense/{{id}}" data-toggle="confirmation"
                                 data-title="Confirm delete?">
                                 <i class="fa-solid fa-trash" style="color: gray;"></i>
                             </a>

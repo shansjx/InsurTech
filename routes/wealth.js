@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const BudgetT = require('../models/BudgetT');
+const ExpensesT = require('../models/ExpensesT');
 
 router.get('/showWealthAssistant', (req, res) => {
     res.render('wealth/wealthAssistant');
@@ -99,6 +100,126 @@ router.put('/tracking/saveEditedBudget/:id', (req,res) => {
     }).then((budgetT)=>{
         res.redirect('/wealth/tracking/budget');
     }).catch(err => console.log(err))
+});
+
+router.get('/tracking/wDeleteBudget/:id', (req, res) => {
+    BudgetT.findOne({
+        where:{
+            id:req.params.id
+        }
+    }).then ((budgetT) => {
+        let budget = budgetT.budget;
+        BudgetT.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(() => {
+            res.redirect('/wealth/tracking/budget');
+        })
+    }).catch(err => console.log(err));
+});
+
+//routers for expenses tracker
+router.get('/tracking/expense', (req, res) => {
+    ExpensesT.findAll({
+        where:{
+        },
+        order:[
+        ],
+        raw: true
+    })
+        .then((expensesT) => {
+            res.render('wealth/tracking/expenseTracking',{
+                expensesT:expensesT
+            });
+        })
+        .catch(err => console.log(err));
+});
+
+router.get('/tracking/expense/AddExpense', (req, res) => {
+    res.render('wealth/tracking/wAddExpense');
+});
+
+//creation of new budget
+router.post('/tracking/wAddExpense', (req, res) => {
+    let expense = req.body.expense;
+    let amount = req.body.amount;
+
+    // Multi-value components return array of strings or undefined
+    ExpensesT.create({
+        expense,
+        amount
+    }).then((expensesT) => {
+        res.redirect('/wealth/tracking/expense');
+    })
+        .catch(err => console.log(err))
+});
+
+router.get('/tracking/expense/showEditExpenses', (req, res) => {
+    ExpensesT.findAll({
+        where:{
+        },
+        order:[
+        ],
+        raw: true
+    })
+        .then((expensesT) => {
+            res.render('wealth/tracking/wShowEditExpenses',{
+                expensesT:expensesT
+            });
+        })
+        .catch(err => console.log(err));
+});
+
+router.get('/tracking/wEditExpense/:id', (req,res) => {
+    ExpensesT.findOne({
+        where:{
+            id: req.params.id
+        },
+        order: [
+
+        ],
+        raw: true
+    })
+        .then((expensesT) => {
+            res.render('wealth/tracking/wEditExpenses', {
+                expensesT:expensesT
+            });
+        })
+        .catch(err => console.log(err));
+});
+
+router.put('/tracking/saveEditedExpense/:id', (req,res) => {
+    let expense = req.body.expense;
+    let amount = req.body.amount;
+
+    ExpensesT.update({
+        expense,
+        amount
+    },{
+        where: {
+            id: req.params.id
+        }
+    }).then((expensesT)=>{
+        res.redirect('/wealth/tracking/expense');
+    }).catch(err => console.log(err))
+});
+
+router.get('/tracking/wDeleteExpense/:id', (req, res) => {
+    ExpensesT.findOne({
+        where:{
+            id:req.params.id
+        }
+    }).then ((expensesT) => {
+        let expense = expensesT.expense;
+        ExpensesT.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(() => {
+            res.redirect('/wealth/tracking/expense');
+        })
+    }).catch(err => console.log(err));
 });
 
 module.exports = router;
