@@ -31,3 +31,16 @@
   margin: 5px;
 }
 
+.grid-container{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #F5C0C0;
+  padding: 10px;
+}
+
+.grid-item{
+  background-color: white;
+  border: 1px solid black;
+  padding: 30px;
+  text-align: center;
+}

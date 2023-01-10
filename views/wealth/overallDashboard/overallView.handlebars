@@ -1,0 +1,26 @@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div class="grid-container">
+        <div class="grid-item">
+            {{#if budgetT}}
+            Total Budget for the Month - ${{totalAmount}}
+            <div class="displayBudget">
+                {{#each budgetT}}
+                {{budget}}: ${{amount}}
+                <br>
+                {{/each}}
+            </div> 
+            {{/if}}
+        </div>
+
+        <div class="grid-item">
+            {{#if expensesT}}
+            Total Expenses for the Month - $
+            <div class="displayExpense">
+                {{#each expensesT}}
+                {{expense}}: ${{amount}}
+                <br>
+                {{/each}}
+            </div>
+            {{/if}}
+        </div>
+</div>

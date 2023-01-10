@@ -7,16 +7,19 @@ const db = require('../config/DBConfig');
    !! put the name in mysql as "nutritiontables"
 */
 
-const BudgetT = db.define('budgettable', {
+const SavingsT = db.define('savingstable', {
     budget: {
         type: Sequelize.STRING(50)
         
     },
-    amount: {
+    budgetAmount: {
         type: Sequelize.INTEGER
     },
-    totalAmount: {
+    expense:{
+        type: Sequelize.STRING(50)
+    },
+    expenseAmount: {
         type: Sequelize.INTEGER
     }
 });
-module.exports = BudgetT;
+module.exports = SavingsT;

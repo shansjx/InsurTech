@@ -222,4 +222,36 @@ router.get('/tracking/wDeleteExpense/:id', (req, res) => {
     }).catch(err => console.log(err));
 });
 
+//routes for overall dashboard
+router.get('/overallDashboard/', (req, res)=>{
+    BudgetT.findAll({
+        where:{
+            
+        },
+        order: [
+
+        ],
+        raw: true
+
+    })
+        .then((budgetT) => {
+            ExpensesT.findAll({
+                where:{
+
+                },
+                order: [
+
+                ],
+                raw: true
+            }).then((expensesT) => {
+                res.render('wealth/overallDashboard/overallView', {
+                    budgetT:budgetT,
+                    expensesT: expensesT
+                });
+            })
+        .catch(err => console.log(err));
+    });
+});
+
+
 module.exports = router;
